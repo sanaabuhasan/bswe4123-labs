@@ -61,3 +61,42 @@ Service 2 was intentionally configured with a 0.8-second delay. Therefore, its r
 The monitor completed approximately 21 health-check cycles during the test.
 
 This test confirms that the monitoring system can identify healthy and slow services.
+Actual Monitoring Output
+
+One-Minute Monitoring Test
+
+The following output was observed during the one-minute test:
+
+--- Health Check ---
+Service 1: UP (198.9 ms)
+Service 2: SLOW (873.8 ms)
+Service 3: UP (94.8 ms)
+
+--- Health Check ---
+Service 1: UP (29.6 ms)
+Service 2: SLOW (835.0 ms)
+Service 3: UP (28.4 ms)
+
+--- Health Check ---
+Service 1: UP (25.9 ms)
+Service 2: SLOW (829.9 ms)
+Service 3: UP (25.5 ms)
+
+--- Health Check ---
+Service 1: UP (31.6 ms)
+Service 2: SLOW (833.7 ms)
+Service 3: UP (47.0 ms)
+
+The monitor completed approximately 21 monitoring rounds. Service 1 and Service 3 remained UP, while Service 2 remained SLOW because of the intentional 0.8-second delay.
+
+Stopping and Restarting a Service
+
+When Service 3 was stopped, the monitor detected consecutive failures:
+
+Service 3: Check failed (1/3)
+Service 3: Check failed (2/3)
+Service 3: DOWN
+
+After Service 3 was restarted, its status returned to UP.
+
+This demonstrates that the monitor can detect service failures and recovery.
