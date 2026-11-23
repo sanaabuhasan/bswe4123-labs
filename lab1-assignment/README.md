@@ -46,3 +46,18 @@ A single failed check does not mean that the service is down. The monitor waits 
 The timeout is set to 2 seconds to prevent waiting indefinitely.
 
 Three consecutive failures help reduce false alarms. However, this means detecting a real failure takes longer. A shorter timeout detects failures faster but may cause false alarms, while a longer timeout delays failure detection.
+## One-Minute Monitoring Test
+
+The monitor was run for approximately one minute while all three services were active.
+
+The results showed:
+
+- Service 1: UP
+- Service 2: SLOW
+- Service 3: UP
+
+Service 2 was intentionally configured with a 0.8-second delay. Therefore, its response time was greater than 500 ms and the monitor correctly classified it as SLOW.
+
+The monitor completed approximately 21 health-check cycles during the test.
+
+This test confirms that the monitoring system can identify healthy and slow services.
